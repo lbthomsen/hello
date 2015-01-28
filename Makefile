@@ -227,7 +227,7 @@ AUTOHEADER = ${SHELL} /home/lth/src/hello/missing autoheader
 AUTOMAKE = ${SHELL} /home/lth/src/hello/missing automake-1.14
 AWK = gawk
 CC = gcc
-CCDEPMODE = depmode=gcc3
+CCDEPMODE = depmode=none
 CFLAGS = -g -O2
 CPPFLAGS = 
 CYGPATH_W = echo
