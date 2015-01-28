@@ -1,0 +1,11 @@
+/Makefile.in
+/aclocal.m4
+/autom4te.cache/
+/config.*
+/m4/
+/stamp-h?
+/depcomp
+.deps/
+.dirstamp
+*.o
+*~
