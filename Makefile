@@ -79,8 +79,8 @@ POST_UNINSTALL = :
 subdir = .
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(top_srcdir)/configure $(am__configure_deps) \
-	$(srcdir)/config.h.in $(dist_doc_DATA) compile install-sh \
-	missing
+	$(srcdir)/config.h.in $(dist_doc_DATA) compile depcomp \
+	install-sh missing
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
@@ -226,9 +226,9 @@ AUTOCONF = ${SHELL} /home/lth/src/hello/missing autoconf
 AUTOHEADER = ${SHELL} /home/lth/src/hello/missing autoheader
 AUTOMAKE = ${SHELL} /home/lth/src/hello/missing automake-1.14
 AWK = gawk
-CC = /usr/bin/gcc
+CC = gcc
 CCDEPMODE = depmode=gcc3
-CFLAGS = -g3 -gdwarf-2
+CFLAGS = -g -O2
 CPPFLAGS = 
 CYGPATH_W = echo
 DEFS = -DHAVE_CONFIG_H
@@ -257,6 +257,9 @@ PACKAGE_TARNAME = hello
 PACKAGE_URL = 
 PACKAGE_VERSION = 1.0
 PATH_SEPARATOR = :
+PKG_CONFIG = /usr/bin/pkg-config
+PKG_CONFIG_LIBDIR = 
+PKG_CONFIG_PATH = 
 SET_MAKE = 
 SHELL = /bin/bash
 STRIP = 
@@ -265,7 +268,7 @@ abs_builddir = /home/lth/src/hello
 abs_srcdir = /home/lth/src/hello
 abs_top_builddir = /home/lth/src/hello
 abs_top_srcdir = /home/lth/src/hello
-ac_ct_CC = /usr/bin/gcc
+ac_ct_CC = gcc
 am__include = include
 am__leading_dot = .
 am__quote = 
@@ -290,6 +293,8 @@ localedir = ${datarootdir}/locale
 localstatedir = ${prefix}/var
 mandir = ${datarootdir}/man
 mkdir_p = $(MKDIR_P)
+modbus_CFLAGS = -I/usr/include/modbus 
+modbus_LIBS = -lmodbus 
 oldincludedir = /usr/include
 pdfdir = ${docdir}
 prefix = /usr/local

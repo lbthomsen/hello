@@ -6,4 +6,5 @@ AC_CONFIG_FILES([
  Makefile
  src/Makefile
 ])
+PKG_CHECK_MODULES(modbus, libmodbus >= 3)
 AC_OUTPUT

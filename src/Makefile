@@ -90,9 +90,11 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_hello_OBJECTS = main.$(OBJEXT)
+am_hello_OBJECTS = hello-main.$(OBJEXT)
 hello_OBJECTS = $(am_hello_OBJECTS)
 hello_LDADD = $(LDADD)
+hello_LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(hello_LDFLAGS) \
+	$(LDFLAGS) -o $@
 AM_V_P = $(am__v_P_$(V))
 am__v_P_ = $(am__v_P_$(AM_DEFAULT_VERBOSITY))
 am__v_P_0 = false
@@ -109,6 +111,10 @@ DEFAULT_INCLUDES = -I. -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
 am__mv = mv -f
+AM_V_lt = $(am__v_lt_$(V))
+am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
+am__v_lt_0 = --silent
+am__v_lt_1 = 
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 AM_V_CC = $(am__v_CC_$(V))
@@ -155,9 +161,9 @@ AUTOCONF = ${SHELL} /home/lth/src/hello/missing autoconf
 AUTOHEADER = ${SHELL} /home/lth/src/hello/missing autoheader
 AUTOMAKE = ${SHELL} /home/lth/src/hello/missing automake-1.14
 AWK = gawk
-CC = /usr/bin/gcc
+CC = gcc
 CCDEPMODE = depmode=gcc3
-CFLAGS = -g3 -gdwarf-2
+CFLAGS = -g -O2
 CPPFLAGS = 
 CYGPATH_W = echo
 DEFS = -DHAVE_CONFIG_H
@@ -186,6 +192,9 @@ PACKAGE_TARNAME = hello
 PACKAGE_URL = 
 PACKAGE_VERSION = 1.0
 PATH_SEPARATOR = :
+PKG_CONFIG = /usr/bin/pkg-config
+PKG_CONFIG_LIBDIR = 
+PKG_CONFIG_PATH = 
 SET_MAKE = 
 SHELL = /bin/bash
 STRIP = 
@@ -194,7 +203,7 @@ abs_builddir = /home/lth/src/hello/src
 abs_srcdir = /home/lth/src/hello/src
 abs_top_builddir = /home/lth/src/hello
 abs_top_srcdir = /home/lth/src/hello
-ac_ct_CC = /usr/bin/gcc
+ac_ct_CC = gcc
 am__include = include
 am__leading_dot = .
 am__quote = 
@@ -219,6 +228,8 @@ localedir = ${datarootdir}/locale
 localstatedir = ${prefix}/var
 mandir = ${datarootdir}/man
 mkdir_p = $(MKDIR_P)
+modbus_CFLAGS = -I/usr/include/modbus 
+modbus_LIBS = -lmodbus 
 oldincludedir = /usr/include
 pdfdir = ${docdir}
 prefix = /usr/local
@@ -233,6 +244,8 @@ top_build_prefix = ../
 top_builddir = ..
 top_srcdir = ..
 hello_SOURCES = main.c
+hello_CPPFLAGS = $(modbus_CFLAGS)
+hello_LDFLAGS = $(modbus_LIBS)
 all: all-am
 
 .SUFFIXES:
@@ -312,7 +325,7 @@ clean-binPROGRAMS:
 
 hello$(EXEEXT): $(hello_OBJECTS) $(hello_DEPENDENCIES) $(EXTRA_hello_DEPENDENCIES) 
 	@rm -f hello$(EXEEXT)
-	$(AM_V_CCLD)$(LINK) $(hello_OBJECTS) $(hello_LDADD) $(LIBS)
+	$(AM_V_CCLD)$(hello_LINK) $(hello_OBJECTS) $(hello_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -320,7 +333,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-include ./$(DEPDIR)/main.Po
+include ./$(DEPDIR)/hello-main.Po
 
 .c.o:
 	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -335,6 +348,20 @@ include ./$(DEPDIR)/main.Po
 #	$(AM_V_CC)source='$<' object='$@' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
 #	$(AM_V_CC_no)$(COMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
+
+hello-main.o: main.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(hello_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT hello-main.o -MD -MP -MF $(DEPDIR)/hello-main.Tpo -c -o hello-main.o `test -f 'main.c' || echo '$(srcdir)/'`main.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/hello-main.Tpo $(DEPDIR)/hello-main.Po
+#	$(AM_V_CC)source='main.c' object='hello-main.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(hello_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o hello-main.o `test -f 'main.c' || echo '$(srcdir)/'`main.c
+
+hello-main.obj: main.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(hello_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT hello-main.obj -MD -MP -MF $(DEPDIR)/hello-main.Tpo -c -o hello-main.obj `if test -f 'main.c'; then $(CYGPATH_W) 'main.c'; else $(CYGPATH_W) '$(srcdir)/main.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/hello-main.Tpo $(DEPDIR)/hello-main.Po
+#	$(AM_V_CC)source='main.c' object='hello-main.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(hello_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o hello-main.obj `if test -f 'main.c'; then $(CYGPATH_W) 'main.c'; else $(CYGPATH_W) '$(srcdir)/main.c'; fi`
 
 ID: $(am__tagged_files)
 	$(am__define_uniq_tagged_files); mkid -fID $$unique

@@ -923,12 +923,22 @@ m4trace:configure.ac:3: -1- m4_pattern_allow([^am__fastdepCC_TRUE$])
 m4trace:configure.ac:3: -1- m4_pattern_allow([^am__fastdepCC_FALSE$])
 m4trace:configure.ac:3: -1- _AM_SUBST_NOTMAKE([am__fastdepCC_TRUE])
 m4trace:configure.ac:3: -1- _AM_SUBST_NOTMAKE([am__fastdepCC_FALSE])
-m4trace:configure.ac:9: -1- m4_pattern_allow([^LIB@&t@OBJS$])
-m4trace:configure.ac:9: -1- m4_pattern_allow([^LTLIBOBJS$])
-m4trace:configure.ac:9: -1- AM_CONDITIONAL([am__EXEEXT], [test -n "$EXEEXT"])
-m4trace:configure.ac:9: -1- m4_pattern_allow([^am__EXEEXT_TRUE$])
-m4trace:configure.ac:9: -1- m4_pattern_allow([^am__EXEEXT_FALSE$])
-m4trace:configure.ac:9: -1- _AM_SUBST_NOTMAKE([am__EXEEXT_TRUE])
-m4trace:configure.ac:9: -1- _AM_SUBST_NOTMAKE([am__EXEEXT_FALSE])
-m4trace:configure.ac:9: -1- _AC_AM_CONFIG_HEADER_HOOK(["$ac_file"])
-m4trace:configure.ac:9: -1- _AM_OUTPUT_DEPENDENCY_COMMANDS
+m4trace:configure.ac:9: -1- _m4_warn([syntax], [AC_LANG_CALL: no function given], [../../lib/autoconf/lang.m4:272: AC_LANG_CALL is expanded from...
+../../lib/autoconf/lang.m4:193: AC_LANG_CONFTEST is expanded from...
+../../lib/autoconf/general.m4:2661: _AC_LINK_IFELSE is expanded from...
+../../lib/autoconf/general.m4:2678: AC_LINK_IFELSE is expanded from...
+../../lib/m4sugar/m4sh.m4:639: AS_IF is expanded from...
+../../lib/autoconf/general.m4:2031: AC_CACHE_VAL is expanded from...
+../../lib/autoconf/general.m4:2052: AC_CACHE_CHECK is expanded from...
+../../lib/autoconf/libs.m4:99: AC_CHECK_LIB is expanded from...
+configure.ac:9: the top level])
+m4trace:configure.ac:9: -1- m4_pattern_allow([^HAVE_LIBMODBUS$])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^LIB@&t@OBJS$])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^LTLIBOBJS$])
+m4trace:configure.ac:10: -1- AM_CONDITIONAL([am__EXEEXT], [test -n "$EXEEXT"])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^am__EXEEXT_TRUE$])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^am__EXEEXT_FALSE$])
+m4trace:configure.ac:10: -1- _AM_SUBST_NOTMAKE([am__EXEEXT_TRUE])
+m4trace:configure.ac:10: -1- _AM_SUBST_NOTMAKE([am__EXEEXT_FALSE])
+m4trace:configure.ac:10: -1- _AC_AM_CONFIG_HEADER_HOOK(["$ac_file"])
+m4trace:configure.ac:10: -1- _AM_OUTPUT_DEPENDENCY_COMMANDS
