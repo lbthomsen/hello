@@ -8,7 +8,7 @@ void poll(void)
   modbus_t *mb;
   uint16_t tab_reg[32];
   puts("1");
-  mb = modbus_new_rtu("/dev/ttyS0", 9600, 'n', 8, 1 );
+  mb = modbus_new_rtu("/dev/ttyNotPresent", 9600, 'n', 8, 1 );
   puts("2");
   modbus_set_slave(mb, 1);
   puts("3");
