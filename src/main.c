@@ -29,7 +29,7 @@ int main (void)
   int vermin = libmodbus_version_minor;
   int vermic = libmodbus_version_micro;
 
-  puts ("4:Hello Modbus!");
+  puts ("5:Hello Modbus!");
   puts ("This is " PACKAGE_STRING ".");
   printf("Modbus library version: %i.%i.%i\n", vermaj, vermin, vermic);
   poll();
