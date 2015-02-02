@@ -8,9 +8,11 @@ void poll(void)
   modbus_t *mb;
   uint16_t tab_reg[32];
   puts("1");
-  mb = modbus_new_rtu("/dev/ttyNotPresent", 9600, 'n', 8, 1 );
+  mb = modbus_new_rtu("/dev//dev/tty.PL2303-000014FA", 9600, 'n', 8, 1 );
   puts("2");
   modbus_set_slave(mb, 1);
+  puts("2.1");
+  modbus_set_debug( mb, TRUE );
   puts("3");
   modbus_connect(mb);
   puts("4");
@@ -29,7 +31,7 @@ int main (void)
   int vermin = libmodbus_version_minor;
   int vermic = libmodbus_version_micro;
 
-  puts ("5:Hello Modbus!");
+  puts ("7:Hello Modbus!");
   puts ("This is " PACKAGE_STRING ".");
   printf("Modbus library version: %i.%i.%i\n", vermaj, vermin, vermic);
   poll();
