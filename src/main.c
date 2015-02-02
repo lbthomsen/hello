@@ -4,6 +4,7 @@
 
 void poll(void)
 {
+  printf("0");
   modbus_t *mb;
   uint16_t tab_reg[32];
   printf("1");
