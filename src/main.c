@@ -1,6 +1,6 @@
 #include <config.h>
 #include <stdio.h>
-#include <modbus-rtu.h>
+#include <errno.h>
 #include <modbus.h>
 
 void poll(void)
@@ -18,9 +18,12 @@ void poll(void)
   modbus_connect(mb);
   puts("4");
   /* Read 5 registers from the address 0 */
-  int error = modbus_read_registers(mb, 0, 5, tab_reg);
-  puts("5");
-  printf("Error:%s\n", modbus_strerror(error));
+  int bytes_read  = modbus_read_registers(mb, 0, 5, tab_reg);
+  if( bytes_read == -1 )
+  {
+    puts("5");
+    printf("Error:%s\n", modbus_strerror(errno));
+  }
   puts("6");
   modbus_close(mb);
   puts("7");
