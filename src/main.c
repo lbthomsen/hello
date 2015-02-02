@@ -1,5 +1,6 @@
 #include <config.h>
 #include <stdio.h>
+#include <modbus-rtu.h>
 #include <modbus.h>
 
 void poll(void)
@@ -9,7 +10,6 @@ void poll(void)
   uint16_t tab_reg[32];
   puts("1");
   mb = modbus_new_rtu("/dev/ttyS0", 9600, 'N', 8, 1 );
-  printf("%d", mb );
   puts("2");
   modbus_set_debug( mb, TRUE );
   puts("2.1");
@@ -18,7 +18,9 @@ void poll(void)
   modbus_connect(mb);
   puts("4");
   /* Read 5 registers from the address 0 */
-  modbus_read_registers(mb, 0, 5, tab_reg);
+  int error = modbus_read_registers(mb, 0, 5, tab_reg);
+  puts("5");
+  printf("Error:%s\n", modbus_strerror(error));
   puts("6");
   modbus_close(mb);
   puts("7");
@@ -32,7 +34,7 @@ int main (void)
   int vermin = libmodbus_version_minor;
   int vermic = libmodbus_version_micro;
 
-  puts ("10:Hello Modbus!");
+  puts ("11:Hello Modbus!");
   puts ("This is " PACKAGE_STRING ".");
   printf("Modbus library version: %i.%i.%i\n", vermaj, vermin, vermic);
   poll();
