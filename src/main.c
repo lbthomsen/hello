@@ -8,7 +8,7 @@ void poll(void)
   uint16_t tab_reg[32];
 
   mb = modbus_new_rtu("/dev/ttyS0", 9600, 'n', 8, 1 );
-
+  modbus_set_slave(mb, 1);
   modbus_connect(mb);
 
   /* Read 5 registers from the address 0 */
