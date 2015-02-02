@@ -4,23 +4,23 @@
 
 void poll(void)
 {
-  printf("0\n");
+  puts("0");
   modbus_t *mb;
   uint16_t tab_reg[32];
-  printf("1\n");
+  puts("1");
   mb = modbus_new_rtu("/dev/ttyS0", 9600, 'n', 8, 1 );
-  printf("2\n");
+  puts("2");
   modbus_connect(mb);
-  printf("3\n");
+  puts("3");
   modbus_set_slave(mb, 1);
-  printf("4\n");
+  puts("4");
   /* Read 5 registers from the address 0 */
   modbus_read_registers(mb, 0, 5, tab_reg);
-  printf("6\n");
+  puts("6");
   modbus_close(mb);
-  printf("7\n");
+  puts("7");
   modbus_free(mb);
-  printf("8\n");
+  puts("8");
 }
 
 int main (void)
