@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <errno.h>
 #include <modbus.h>
-#include <iostream>
+#include <iostream.h>
 #include <fcntl.h>
 #include <stropts.h>
 #include <termios.h>
