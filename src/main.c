@@ -2,6 +2,39 @@
 #include <stdio.h>
 #include <errno.h>
 #include <modbus.h>
+#include <serial.h>
+#include <ioctl.h>
+
+void flip(void)
+{
+    int fd;
+    cout << "CP210x Serial Test\n";
+    fd = open("/dev/ttyUSB0", O_RDWR | O_NOCTTY | O_NDELAY);
+    if (fd == -1)
+    {
+        cout << "Error opening port /dev/ttyUSB0\n";
+        return -1;
+    }
+
+    unsigned long gpio;
+
+    ioctl(fd, 0x8000, &gpio);
+    cout << "original gpio = ";
+    cout << hex << gpio << endl;
+    gpio = ~gpio;
+    gpio = gpio << 8;
+    gpio |= 0x00FF;
+    cout << "gpio = ";
+    cout << hex << gpio << endl;
+    ioctl(fd, 0x8001, &gpio);
+    ioctl(fd, 0x8000, &gpio);
+    cout << "new gpio = ";
+    cout << hex << gpio << endl;
+
+    close(fd);
+
+    return 0;
+}
 
 void poll(void)
 {
@@ -19,6 +52,7 @@ void poll(void)
   modbus_set_debug( mb, TRUE );
   puts("2.1");
   modbus_set_slave(mb, 1);
+  
   modbus_rtu_set_serial_mode( mb, MODBUS_RTU_RS485 );
   puts("3");
   modbus_connect(mb);
