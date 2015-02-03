@@ -1,40 +1,35 @@
 #include <config.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <errno.h>
 #include <modbus.h>
-#include <iostream.h>
 #include <fcntl.h>
-#include <stropts.h>
 #include <termios.h>
+#include <ioctl.h>
 
-void flip(void)
+int flip(void)
 {
     int fd;
-    cout << "CP210x Serial Test\n";
+    puts( "CP210x Serial Test" );
     fd = open("/dev/ttyUSB0", O_RDWR | O_NOCTTY | O_NDELAY);
     if (fd == -1)
     {
-        cout << "Error opening port /dev/ttyUSB0\n";
+        puts( "Error opening port /dev/ttyUSB0" );
         return -1;
     }
 
     unsigned long gpio;
 
     ioctl(fd, 0x8000, &gpio);
-    cout << "original gpio = ";
-    cout << hex << gpio << endl;
+    printf( "original gpio = %.4lx\n", gpio);
     gpio = ~gpio;
     gpio = gpio << 8;
     gpio |= 0x00FF;
-    cout << "gpio = ";
-    cout << hex << gpio << endl;
+    printf( "gpio = %.4lx\n", gpio);
     ioctl(fd, 0x8001, &gpio);
     ioctl(fd, 0x8000, &gpio);
-    cout << "new gpio = ";
-    cout << hex << gpio << endl;
-
+    printf( "new gpio = %.4lx\n", gpio);
     close(fd);
-
     return 0;
 }
 
