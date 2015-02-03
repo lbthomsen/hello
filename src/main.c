@@ -80,6 +80,7 @@ int main (void)
   puts ("11:Hello Modbus!");
   puts ("This is " PACKAGE_STRING ".");
   printf("Modbus library version: %i.%i.%i\n", vermaj, vermin, vermic);
+  flip();
   poll();
   return 0;
 }
