@@ -2,8 +2,10 @@
 #include <stdio.h>
 #include <errno.h>
 #include <modbus.h>
-#include <serial.h>
-#include <ioctl.h>
+#include <iostream>
+#include <fcntl.h>
+#include <stropts.h>
+#include <termios.h>
 
 void flip(void)
 {
