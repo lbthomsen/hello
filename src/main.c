@@ -5,7 +5,7 @@
 #include <modbus.h>
 #include <fcntl.h>
 #include <termios.h>
-#include <ioctl.h>
+#include <linux/ioctl.h>
 
 int flip(void)
 {
